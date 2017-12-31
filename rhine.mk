@@ -46,9 +46,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    e2fsck
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -60,6 +57,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/gps/etc/gps.conf:system/etc/gps.conf
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    e2fsck
 
 PRODUCT_PACKAGES += \
     qcom.fmradio \
@@ -80,7 +81,8 @@ PRODUCT_PACKAGES += \
     tad_static \
     wait4tad_static \
     libshim_cald \
-    libshim_camera
+    libshim_camera \
+    libshim_atomic
 
 # Init
 PRODUCT_COPY_FILES += \
