@@ -377,35 +377,35 @@ service loc_launcher /system/bin/loc_launcher
     group gps inet net_raw diag net_admin wifi
 
 # Start suntrold
-service suntrold /system/bin/suntrold
+service suntrold /system/vendor/bin/suntrold
     user system
     group system camera
     oneshot
     class main
 
 # Thermal Manager service
-service thermanager /system/bin/thermanager /system/etc/thermanager.xml
+service thermanager /system/vendor/bin/thermanager /system/etc/thermanager.xml
     class main
     user root
     group root
 
-service irsc_util /system/bin/irsc_util "/etc/sec_config"
+service irsc_util /system/vendor/bin/irsc_util "/etc/sec_config"
     class main
     user root
     oneshot
 
-service rmt_storage /system/bin/rmt_storage
+service rmt_storage /system/vendor/bin/rmt_storage
     class core
     user root
     group system wakelock
 
-service sensors /system/bin/sensors.qcom
+service sensors /system/vendor/bin/sensors.qcom
     class core
     user root
     group root wakelock
 
 # HexagonDSP FastRPC daemon
-service adsprpcd /system/bin/adsprpcd
+service adsprpcd /system/vendor/bin/adsprpcd
    class main
    user media
    group media
