@@ -23,6 +23,7 @@ on init
 :/system/vendor/bin/iddd|/system/vendor/lib/libshims_idd.so \
 :/system/vendor/bin/suntrold|/system/vendor/lib/libshims_signal.so \
 :/system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libsonycamera.so \
+:/system/lib/hw/camera.qcom.so|libsonycamera.so \
 :/system/lib/libcammw.so|libshim_cald.so \
 :/system/lib/hw/camera.vendor.qcom.so|libshim_camera.so \
 :/system/vendor/bin/mm-qcamera-daemon|libandroid.so \
@@ -43,19 +44,19 @@ on early-boot
 
 on boot
     # PM8941 flash
-    chown media system /sys/class/misc/pm8941-flash/device/current1
-    chown media system /sys/class/misc/pm8941-flash/device/current2
-    chown media system /sys/class/misc/pm8941-flash/device/fault_status
-    chown media system /sys/class/misc/pm8941-flash/device/fine_current1
-    chown media system /sys/class/misc/pm8941-flash/device/fine_current2
-    chown media system /sys/class/misc/pm8941-flash/device/flash_timer
-    chown media system /sys/class/misc/pm8941-flash/device/mask_clamp_current
-    chown media system /sys/class/misc/pm8941-flash/device/mask_enable
-    chown media system /sys/class/misc/pm8941-flash/device/max_current
-    chown media system /sys/class/misc/pm8941-flash/device/mode
-    chown media system /sys/class/misc/pm8941-flash/device/startup_delay
-    chown media system /sys/class/misc/pm8941-flash/device/strobe
-    chown media system /sys/class/misc/pm8941-flash/device/vph_pwr_droop
+    chown system camera /sys/class/misc/pm8941-flash/device/current1
+    chown system camera /sys/class/misc/pm8941-flash/device/current2
+    chown system camera /sys/class/misc/pm8941-flash/device/fault_status
+    chown system camera /sys/class/misc/pm8941-flash/device/fine_current1
+    chown system camera /sys/class/misc/pm8941-flash/device/fine_current2
+    chown system camera /sys/class/misc/pm8941-flash/device/flash_timer
+    chown system camera /sys/class/misc/pm8941-flash/device/mask_clamp_current
+    chown system camera /sys/class/misc/pm8941-flash/device/mask_enable
+    chown system camera /sys/class/misc/pm8941-flash/device/max_current
+    chown system camera /sys/class/misc/pm8941-flash/device/mode
+    chown system camera /sys/class/misc/pm8941-flash/device/startup_delay
+    chown system camera /sys/class/misc/pm8941-flash/device/strobe
+    chown system camera /sys/class/misc/pm8941-flash/device/vph_pwr_droop
 
 on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
@@ -77,28 +78,23 @@ on post-fs-data
     # SONY: Camera
     mkdir /data/camera 0770 media camera
     chown media camera /sys/devices/sony_camera_0/info
-
     chmod 0660 /sys/devices/sony_camera_0/info
     chown media camera /sys/devices/sony_camera_1/info
+    chmod 0660 /sys/devices/sony_camera_1/info
 
     # SONY: Import MiscTA to System properties
-    exec -- /system/bin/taimport property
+    exec -- /system/vendor/bin/taimport property
     setprop init.taimport.ready true
     # taimport ready, use this as trigger for multi-cdf-symlinker
 
-    # create credmgrinit log file
-    # Actually, no need, because it will be created by credmgrfirstboot.sh
-    # touch /cache/credmgr.log
-    # restorecon -R /cache/credmgr.log
-
-service taimport /system/bin/taimport
+service taimport /system/vendor/bin/taimport
     class late_start
     user root
     group system
     oneshot
 
 # This script init /cache/CredentialManagerData if /data/credmgr doesn't meet our requirements
-service initcredmgr /system/bin/credmgrfirstboot.sh
+service initcredmgr /system/vendor/bin/credmgrfirstboot.sh
     class late_start
     user root
     group root
