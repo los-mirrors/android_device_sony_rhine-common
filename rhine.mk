@@ -82,7 +82,12 @@ PRODUCT_PACKAGES += \
     wait4tad_static \
     libshim_cald \
     libshim_camera \
-    libshim_atomic
+    libshim_atomic \
+    libstlport
+
+# Connectivity
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -98,7 +103,7 @@ PRODUCT_COPY_FILES += \
 
 
 PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/rootdir/system/bin/credmgrfirstboot.sh:system/bin/credmgrfirstboot.sh
+    $(COMMON_PATH)/rootdir/system/vendor/bin/credmgrfirstboot.sh:system/vendor/bin/credmgrfirstboot.sh
 
 
 # Connectivity
