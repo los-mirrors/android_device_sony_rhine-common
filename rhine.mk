@@ -46,18 +46,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/audio_policy.conf:system/vendor/etc/audio_policy.conf
 
-
-# GPS
-PRODUCT_PACKAGES += \
-    libloc_core \
-    libloc_eng \
-    libgps.utils \
-    libloc_ds_api \
-    libloc_api_v02
-
-PRODUCT_COPY_FILES += \
-    $(COMMON_PATH)/gps/etc/gps.conf:system/etc/gps.conf
-
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck
