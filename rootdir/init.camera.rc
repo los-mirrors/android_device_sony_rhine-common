@@ -18,20 +18,6 @@ on init
     # BoringSSL hacks
     export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/lib/libshim_atomic.so"
 
-	export LD_SHIM_LIBS " \
-:/system/vendor/bin/credmgrd|/system/vendor/lib/libshims_signal.so \
-:/system/vendor/bin/iddd|/system/vendor/lib/libshims_idd.so \
-:/system/vendor/bin/suntrold|/system/vendor/lib/libshims_signal.so \
-:/system/lib/hw/camera.vendor.qcom.so|/system/vendor/lib/libsonycamera.so \
-:/system/lib/hw/camera.qcom.so|libsonycamera.so \
-:/system/lib/libcammw.so|libshim_cald.so \
-:/system/lib/hw/camera.vendor.qcom.so|libshim_camera.so \
-:/system/vendor/bin/mm-qcamera-daemon|libandroid.so \
-:/system/lib/libcammw.so|libsensor.so \
-:/system/lib/libsomc_chokoballpal.so|/system/vendor/lib/libGraphicBuffer.so \
-:/system/lib/hw/camera.vendor.qcom.so|libsensor.so \
-"
-
 on early-fs
     wait /dev/block/mmcblk0p1
     class_start trimarea
@@ -43,20 +29,6 @@ on early-boot
     start sct_service
 
 on boot
-    # PM8941 flash
-    chown system camera /sys/class/misc/pm8941-flash/device/current1
-    chown system camera /sys/class/misc/pm8941-flash/device/current2
-    chown system camera /sys/class/misc/pm8941-flash/device/fault_status
-    chown system camera /sys/class/misc/pm8941-flash/device/fine_current1
-    chown system camera /sys/class/misc/pm8941-flash/device/fine_current2
-    chown system camera /sys/class/misc/pm8941-flash/device/flash_timer
-    chown system camera /sys/class/misc/pm8941-flash/device/mask_clamp_current
-    chown system camera /sys/class/misc/pm8941-flash/device/mask_enable
-    chown system camera /sys/class/misc/pm8941-flash/device/max_current
-    chown system camera /sys/class/misc/pm8941-flash/device/mode
-    chown system camera /sys/class/misc/pm8941-flash/device/startup_delay
-    chown system camera /sys/class/misc/pm8941-flash/device/strobe
-    chown system camera /sys/class/misc/pm8941-flash/device/vph_pwr_droop
 
 on post-fs-data
     # we will remap this as /mnt/sdcard with the sdcard fuse tool
