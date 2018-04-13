@@ -16,7 +16,7 @@
 
 on init
     # BoringSSL hacks
-    export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/lib/libshim_atomic.so"
+    export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/vendor/lib/libshim_atomic.so"
 
 on early-fs
     wait /dev/block/mmcblk0p1
