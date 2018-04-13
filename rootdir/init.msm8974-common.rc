@@ -349,12 +349,12 @@ on property:sys.boot_completed=1
     swapon_all fstab.qcom
 
 # QMUX must be in multiple groups to support external process connections
-service qmuxd /system/bin/qmuxd
+service qmuxd /system/vendor/bin/qmuxd
     class main
     user radio
     group radio audio bluetooth gps nfc diag wakelock
 
-service netmgrd /system/bin/netmgrd
+service netmgrd /system/vendor/bin/netmgrd
     class late_start
     user root
     group root system wifi wakelock radio inet
@@ -363,7 +363,7 @@ on property:ro.radio.noril=true
     stop ril-daemon
     stop netmgrd
 
-service qseecomd /system/bin/qseecomd
+service qseecomd /system/vendor/bin/qseecomd
     class core
     user root
     group drmrpc root
@@ -380,7 +380,7 @@ service suntrold /system/vendor/bin/suntrold
     class main
 
 # Thermal Manager service
-service thermanager /system/vendor/bin/thermanager /system/etc/thermanager.xml
+service thermanager /system/vendor/bin/thermanager /system/vendor/etc/thermanager.xml
     class main
     user root
     group root
@@ -437,7 +437,7 @@ service mediadrm /system/bin/mediadrmserver
     group mediadrm drmrpc
     ioprio rt 4
 
-service mpdecision /system/bin/mpdecision --avg_comp
+service mpdecision /system/vendor/bin/mpdecision --avg_comp
     class main
     user root
     group root readproc
