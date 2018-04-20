@@ -26,7 +26,6 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_BASE     := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE  := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3b7 ehci-hcd.park=3 androidboot.bootdevice=msm_sdcc.1 vmalloc=300M dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
-#BOARD_KERNEL_CMDLINE  += androidboot.selinux=permissive
 BOARD_MKBOOTIMG_ARGS  := --ramdisk_offset 0x02000000 --tags_offset 0x01E00000
 BOARD_KERNEL_SEPARATED_DT := true
 
@@ -72,8 +71,8 @@ TARGET_LD_SHIM_LIBS := \
 
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/sony/rhine-common/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/sony/rhine-common/sepolicy
 
 # Platform props
 TARGET_SYSTEM_PROP += device/sony/rhine-common/system.prop
