@@ -13,11 +13,6 @@
 # See the License for the specific language governing permissions and 
 # limitations under the License.
 #
-
-on init
-    # BoringSSL hacks
-    export LD_PRELOAD "/system/lib/libboringssl-compat.so /system/vendor/lib/libshim_atomic.so"
-
 on early-fs
     wait /dev/block/mmcblk0p1
     class_start trimarea
